@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Twitter, Heart } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +14,13 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleFavorite = () => {
+    setIsFavorited(!isFavorited);
+    if (!isFavorited) {
+      alert('Press Ctrl+D (or Cmd+D) to add this site to your favorites!');
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -48,6 +56,14 @@ const Navbar = () => {
               {link.name}
             </motion.a>
           ))}
+          <motion.button
+            onClick={handleFavorite}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className={`p-2 rounded-full border transition-all ${isFavorited ? 'bg-red-500/20 border-red-500 text-red-500' : 'bg-white/5 border-white/10 text-zinc-400 hover:text-primary'}`}
+          >
+            <Heart size={18} fill={isFavorited ? 'currentColor' : 'none'} />
+          </motion.button>
           <motion.a
             href="#contact"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -84,7 +100,13 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <div className="flex space-x-4 pt-4">
+              <div className="flex space-x-4 pt-4 items-center">
+                <button 
+                  onClick={handleFavorite}
+                  className={`p-2 rounded-full border transition-all ${isFavorited ? 'bg-red-500/20 border-red-500 text-red-500' : 'bg-white/5 border-white/10 text-zinc-400'}`}
+                >
+                  <Heart size={20} fill={isFavorited ? 'currentColor' : 'none'} />
+                </button>
                 <Github className="text-zinc-400 hover:text-primary cursor-pointer" size={20} />
                 <Linkedin className="text-zinc-400 hover:text-primary cursor-pointer" size={20} />
                 <Twitter className="text-zinc-400 hover:text-primary cursor-pointer" size={20} />

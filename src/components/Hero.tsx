@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Download } from 'lucide-react';
+import { PROFILE_IMAGE } from '../constants';
 
 const Hero = () => {
   return (
@@ -60,11 +61,11 @@ const Hero = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="relative"
         >
-          <div className="relative z-10 w-full aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+          <div className="relative z-10 w-full aspect-[4/5] max-w-md mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <img 
-              src="https://picsum.photos/seed/salman/800/800" 
+              src={PROFILE_IMAGE} 
               alt="Salman Ahmed" 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover hover:scale-105 transition-all duration-700"
               referrerPolicy="no-referrer"
             />
           </div>

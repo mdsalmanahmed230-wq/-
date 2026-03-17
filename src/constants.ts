@@ -1,5 +1,7 @@
 import { Project, Skill, Service, Testimonial } from './types';
 
+export const PROFILE_IMAGE = 'https://i.postimg.cc/JznyvBZR/ama-ra-chaba.jpg'; // Updated with user's photo
+
 export const PROJECTS: Project[] = [
   {
     id: '1',
